@@ -244,7 +244,7 @@ Public Class Form1
 			For x = 0 To numberoffiles - 1
 				sourcefilename = ListBox1.Items(x)
 				destinationfilename = Strings.Left(sourcefilename, Len(sourcefilename) - 3) & "xml"
-				encoding = "utf-8"
+				encoding = "utf8"
 				If ComboBox1.SelectedIndex = 1 Then encoding = "cp1251"
 				If ComboBox1.SelectedIndex = 2 Then encoding = "cp1252"
 
@@ -394,6 +394,7 @@ exitproc:
 		TextBox7.Text = ""
 		TextBox8.Text = ""
 		CheckBox1.Checked = False
+		ComboBox1.SelectedIndex = -1
 		ComboBox2.SelectedIndex = -1
 		ComboBox3.SelectedIndex = -1
 	End Sub
@@ -407,6 +408,7 @@ exitproc:
 			Dim strFilepath As String
 			' create a file test.ini in the bin folder in your application path
 			strFilepath = SaveFileDialog2.FileName
+			WriteIni(strFilepath, "Settings", "Encoding", ComboBox1.Text)
 			WriteIni(strFilepath, "Settings", "IDCode", TextBox1.Text)
 			WriteIni(strFilepath, "Settings", "Description", TextBox2.Text)
 			WriteIni(strFilepath, "Settings", "Version", TextBox6.Text)
@@ -429,6 +431,7 @@ exitproc:
 			Dim strFilepath As String
 			' create a file test.ini in the bin folder in your application path
 			strFilepath = OpenFileDialog2.FileName
+			ComboBox1.Text = ReadIni(strFilepath, "Settings", "Encoding", "utf-8 (Unicode)")
 			TextBox1.Text = ReadIni(strFilepath, "Settings", "IDCode", "")
 			TextBox2.Text = ReadIni(strFilepath, "Settings", "Description", "")
 			TextBox6.Text = ReadIni(strFilepath, "Settings", "Version", "")

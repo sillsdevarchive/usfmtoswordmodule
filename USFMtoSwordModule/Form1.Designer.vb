@@ -26,6 +26,13 @@ Partial Class Form1
 		Me.Button1 = New System.Windows.Forms.Button
 		Me.ListBox1 = New System.Windows.Forms.ListBox
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox
+		Me.ComboBox3 = New System.Windows.Forms.ComboBox
+		Me.Label19 = New System.Windows.Forms.Label
+		Me.Label18 = New System.Windows.Forms.Label
+		Me.Label17 = New System.Windows.Forms.Label
+		Me.TextBox8 = New System.Windows.Forms.TextBox
+		Me.CheckBox1 = New System.Windows.Forms.CheckBox
+		Me.Button9 = New System.Windows.Forms.Button
 		Me.Button6 = New System.Windows.Forms.Button
 		Me.Button5 = New System.Windows.Forms.Button
 		Me.Button4 = New System.Windows.Forms.Button
@@ -63,38 +70,37 @@ Partial Class Form1
 		Me.Button7 = New System.Windows.Forms.Button
 		Me.Button8 = New System.Windows.Forms.Button
 		Me.FontDialog1 = New System.Windows.Forms.FontDialog
-		Me.Button9 = New System.Windows.Forms.Button
-		Me.CheckBox1 = New System.Windows.Forms.CheckBox
-		Me.TextBox8 = New System.Windows.Forms.TextBox
-		Me.Label17 = New System.Windows.Forms.Label
-		Me.Label18 = New System.Windows.Forms.Label
-		Me.Label19 = New System.Windows.Forms.Label
-		Me.ComboBox3 = New System.Windows.Forms.ComboBox
+		Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
 		Me.GroupBox1.SuspendLayout()
+		Me.TableLayoutPanel1.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'Button1
 		'
-		Me.Button1.Location = New System.Drawing.Point(12, 12)
+		Me.Button1.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.Button1.Location = New System.Drawing.Point(3, 3)
 		Me.Button1.Name = "Button1"
-		Me.Button1.Size = New System.Drawing.Size(141, 32)
+		Me.Button1.Size = New System.Drawing.Size(157, 32)
 		Me.Button1.TabIndex = 0
 		Me.Button1.Text = "Add USFM files..."
 		Me.Button1.UseVisualStyleBackColor = True
 		'
 		'ListBox1
 		'
+		Me.TableLayoutPanel1.SetColumnSpan(Me.ListBox1, 3)
+		Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.ListBox1.FormattingEnabled = True
 		Me.ListBox1.HorizontalScrollbar = True
-		Me.ListBox1.Location = New System.Drawing.Point(13, 54)
+		Me.ListBox1.Location = New System.Drawing.Point(3, 41)
 		Me.ListBox1.Name = "ListBox1"
-		Me.ListBox1.Size = New System.Drawing.Size(488, 199)
+		Me.ListBox1.Size = New System.Drawing.Size(484, 199)
 		Me.ListBox1.Sorted = True
 		Me.ListBox1.TabIndex = 1
 		Me.ListBox1.TabStop = False
 		'
 		'GroupBox1
 		'
+		Me.TableLayoutPanel1.SetColumnSpan(Me.GroupBox1, 3)
 		Me.GroupBox1.Controls.Add(Me.ComboBox3)
 		Me.GroupBox1.Controls.Add(Me.Label19)
 		Me.GroupBox1.Controls.Add(Me.Label18)
@@ -128,12 +134,77 @@ Partial Class Form1
 		Me.GroupBox1.Controls.Add(Me.Label3)
 		Me.GroupBox1.Controls.Add(Me.TextBox1)
 		Me.GroupBox1.Controls.Add(Me.Label2)
-		Me.GroupBox1.Location = New System.Drawing.Point(12, 297)
+		Me.GroupBox1.Location = New System.Drawing.Point(3, 275)
 		Me.GroupBox1.Name = "GroupBox1"
-		Me.GroupBox1.Size = New System.Drawing.Size(489, 426)
+		Me.GroupBox1.Size = New System.Drawing.Size(484, 426)
 		Me.GroupBox1.TabIndex = 2
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Sword Module properties"
+		'
+		'ComboBox3
+		'
+		Me.ComboBox3.FormattingEnabled = True
+		Me.ComboBox3.Items.AddRange(New Object() {"KJV", "KJVA", "NRSV", "NRSVA", "Leningrad", "MT"})
+		Me.ComboBox3.Location = New System.Drawing.Point(97, 153)
+		Me.ComboBox3.Name = "ComboBox3"
+		Me.ComboBox3.Size = New System.Drawing.Size(85, 21)
+		Me.ComboBox3.TabIndex = 6
+		'
+		'Label19
+		'
+		Me.Label19.AutoSize = True
+		Me.Label19.Location = New System.Drawing.Point(16, 156)
+		Me.Label19.Name = "Label19"
+		Me.Label19.Size = New System.Drawing.Size(67, 13)
+		Me.Label19.TabIndex = 34
+		Me.Label19.Text = "Versification:"
+		'
+		'Label18
+		'
+		Me.Label18.AutoSize = True
+		Me.Label18.Location = New System.Drawing.Point(93, 361)
+		Me.Label18.Name = "Label18"
+		Me.Label18.Size = New System.Drawing.Size(61, 13)
+		Me.Label18.TabIndex = 33
+		Me.Label18.Text = "Cipher Key:"
+		'
+		'Label17
+		'
+		Me.Label17.AutoSize = True
+		Me.Label17.Location = New System.Drawing.Point(351, 361)
+		Me.Label17.Name = "Label17"
+		Me.Label17.Size = New System.Drawing.Size(121, 13)
+		Me.Label17.TabIndex = 32
+		Me.Label17.Text = "(16 characters in length)"
+		'
+		'TextBox8
+		'
+		Me.TextBox8.Enabled = False
+		Me.TextBox8.Location = New System.Drawing.Point(160, 358)
+		Me.TextBox8.MaxLength = 16
+		Me.TextBox8.Name = "TextBox8"
+		Me.TextBox8.Size = New System.Drawing.Size(176, 20)
+		Me.TextBox8.TabIndex = 12
+		'
+		'CheckBox1
+		'
+		Me.CheckBox1.AutoSize = True
+		Me.CheckBox1.Location = New System.Drawing.Point(19, 360)
+		Me.CheckBox1.Name = "CheckBox1"
+		Me.CheckBox1.Size = New System.Drawing.Size(68, 17)
+		Me.CheckBox1.TabIndex = 11
+		Me.CheckBox1.Text = "Encrypt?"
+		Me.CheckBox1.UseVisualStyleBackColor = True
+		'
+		'Button9
+		'
+		Me.Button9.Location = New System.Drawing.Point(369, 182)
+		Me.Button9.Name = "Button9"
+		Me.Button9.Size = New System.Drawing.Size(103, 21)
+		Me.Button9.TabIndex = 29
+		Me.Button9.TabStop = False
+		Me.Button9.Text = "Font chooser..."
+		Me.Button9.UseVisualStyleBackColor = True
 		'
 		'Button6
 		'
@@ -367,28 +438,32 @@ Partial Class Form1
 		'Label1
 		'
 		Me.Label1.AutoSize = True
-		Me.Label1.Location = New System.Drawing.Point(13, 262)
+		Me.Label1.Dock = System.Windows.Forms.DockStyle.Right
+		Me.Label1.Location = New System.Drawing.Point(105, 245)
 		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(55, 13)
+		Me.Label1.Size = New System.Drawing.Size(55, 27)
 		Me.Label1.TabIndex = 3
 		Me.Label1.Text = "Encoding:"
+		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		'
 		'Button2
 		'
-		Me.Button2.Location = New System.Drawing.Point(12, 739)
+		Me.Button2.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.Button2.Location = New System.Drawing.Point(3, 707)
 		Me.Button2.Name = "Button2"
-		Me.Button2.Size = New System.Drawing.Size(163, 32)
+		Me.Button2.Size = New System.Drawing.Size(157, 32)
 		Me.Button2.TabIndex = 13
 		Me.Button2.Text = "Create Sword Module..."
 		Me.Button2.UseVisualStyleBackColor = True
 		'
 		'ComboBox1
 		'
+		Me.ComboBox1.Dock = System.Windows.Forms.DockStyle.Top
 		Me.ComboBox1.FormattingEnabled = True
 		Me.ComboBox1.Items.AddRange(New Object() {"utf-8 (Unicode)", "cp1251 (Cyrillic)", "cp1252 (Western)"})
-		Me.ComboBox1.Location = New System.Drawing.Point(74, 259)
+		Me.ComboBox1.Location = New System.Drawing.Point(166, 248)
 		Me.ComboBox1.Name = "ComboBox1"
-		Me.ComboBox1.Size = New System.Drawing.Size(142, 21)
+		Me.ComboBox1.Size = New System.Drawing.Size(157, 21)
 		Me.ComboBox1.TabIndex = 1
 		'
 		'OpenFileDialog1
@@ -399,10 +474,11 @@ Partial Class Form1
 		'
 		'Button3
 		'
+		Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.Button3.Enabled = False
-		Me.Button3.Location = New System.Drawing.Point(159, 12)
+		Me.Button3.Location = New System.Drawing.Point(166, 3)
 		Me.Button3.Name = "Button3"
-		Me.Button3.Size = New System.Drawing.Size(141, 32)
+		Me.Button3.Size = New System.Drawing.Size(157, 32)
 		Me.Button3.TabIndex = 7
 		Me.Button3.TabStop = False
 		Me.Button3.Text = "Clear file list"
@@ -423,10 +499,11 @@ Partial Class Form1
 		'
 		'Button7
 		'
+		Me.Button7.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.Button7.Enabled = False
-		Me.Button7.Location = New System.Drawing.Point(342, 739)
+		Me.Button7.Location = New System.Drawing.Point(329, 707)
 		Me.Button7.Name = "Button7"
-		Me.Button7.Size = New System.Drawing.Size(163, 32)
+		Me.Button7.Size = New System.Drawing.Size(158, 32)
 		Me.Button7.TabIndex = 8
 		Me.Button7.Text = "Clean up temporary files"
 		Me.Button7.UseVisualStyleBackColor = True
@@ -434,98 +511,56 @@ Partial Class Form1
 		'
 		'Button8
 		'
-		Me.Button8.Location = New System.Drawing.Point(364, 12)
+		Me.Button8.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.Button8.Location = New System.Drawing.Point(329, 3)
 		Me.Button8.Name = "Button8"
-		Me.Button8.Size = New System.Drawing.Size(141, 32)
+		Me.Button8.Size = New System.Drawing.Size(158, 32)
 		Me.Button8.TabIndex = 9
 		Me.Button8.TabStop = False
 		Me.Button8.Text = "Exit"
 		Me.Button8.UseVisualStyleBackColor = True
 		'
-		'Button9
+		'TableLayoutPanel1
 		'
-		Me.Button9.Location = New System.Drawing.Point(369, 182)
-		Me.Button9.Name = "Button9"
-		Me.Button9.Size = New System.Drawing.Size(103, 21)
-		Me.Button9.TabIndex = 29
-		Me.Button9.TabStop = False
-		Me.Button9.Text = "Font chooser..."
-		Me.Button9.UseVisualStyleBackColor = True
-		'
-		'CheckBox1
-		'
-		Me.CheckBox1.AutoSize = True
-		Me.CheckBox1.Location = New System.Drawing.Point(19, 360)
-		Me.CheckBox1.Name = "CheckBox1"
-		Me.CheckBox1.Size = New System.Drawing.Size(68, 17)
-		Me.CheckBox1.TabIndex = 11
-		Me.CheckBox1.Text = "Encrypt?"
-		Me.CheckBox1.UseVisualStyleBackColor = True
-		'
-		'TextBox8
-		'
-		Me.TextBox8.Enabled = False
-		Me.TextBox8.Location = New System.Drawing.Point(160, 358)
-		Me.TextBox8.MaxLength = 16
-		Me.TextBox8.Name = "TextBox8"
-		Me.TextBox8.Size = New System.Drawing.Size(176, 20)
-		Me.TextBox8.TabIndex = 12
-		'
-		'Label17
-		'
-		Me.Label17.AutoSize = True
-		Me.Label17.Location = New System.Drawing.Point(351, 361)
-		Me.Label17.Name = "Label17"
-		Me.Label17.Size = New System.Drawing.Size(121, 13)
-		Me.Label17.TabIndex = 32
-		Me.Label17.Text = "(16 characters in length)"
-		'
-		'Label18
-		'
-		Me.Label18.AutoSize = True
-		Me.Label18.Location = New System.Drawing.Point(93, 361)
-		Me.Label18.Name = "Label18"
-		Me.Label18.Size = New System.Drawing.Size(61, 13)
-		Me.Label18.TabIndex = 33
-		Me.Label18.Text = "Cipher Key:"
-		'
-		'Label19
-		'
-		Me.Label19.AutoSize = True
-		Me.Label19.Location = New System.Drawing.Point(16, 156)
-		Me.Label19.Name = "Label19"
-		Me.Label19.Size = New System.Drawing.Size(67, 13)
-		Me.Label19.TabIndex = 34
-		Me.Label19.Text = "Versification:"
-		'
-		'ComboBox3
-		'
-		Me.ComboBox3.FormattingEnabled = True
-		Me.ComboBox3.Items.AddRange(New Object() {"KJV", "KJVA", "NRSV", "NRSVA", "Leningrad", "MT"})
-		Me.ComboBox3.Location = New System.Drawing.Point(97, 153)
-		Me.ComboBox3.Name = "ComboBox3"
-		Me.ComboBox3.Size = New System.Drawing.Size(85, 21)
-		Me.ComboBox3.TabIndex = 6
+		Me.TableLayoutPanel1.AutoSize = True
+		Me.TableLayoutPanel1.ColumnCount = 3
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334!))
+		Me.TableLayoutPanel1.Controls.Add(Me.Button1, 0, 0)
+		Me.TableLayoutPanel1.Controls.Add(Me.Button8, 2, 0)
+		Me.TableLayoutPanel1.Controls.Add(Me.Button7, 2, 4)
+		Me.TableLayoutPanel1.Controls.Add(Me.ListBox1, 0, 1)
+		Me.TableLayoutPanel1.Controls.Add(Me.Button2, 0, 4)
+		Me.TableLayoutPanel1.Controls.Add(Me.ComboBox1, 1, 2)
+		Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 3)
+		Me.TableLayoutPanel1.Controls.Add(Me.Button3, 1, 0)
+		Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 2)
+		Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+		Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+		Me.TableLayoutPanel1.RowCount = 5
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
+		Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 742)
+		Me.TableLayoutPanel1.TabIndex = 14
 		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(514, 783)
-		Me.Controls.Add(Me.Button8)
-		Me.Controls.Add(Me.Button7)
-		Me.Controls.Add(Me.Button3)
-		Me.Controls.Add(Me.ComboBox1)
-		Me.Controls.Add(Me.Button2)
-		Me.Controls.Add(Me.Label1)
-		Me.Controls.Add(Me.GroupBox1)
-		Me.Controls.Add(Me.ListBox1)
-		Me.Controls.Add(Me.Button1)
+		Me.ClientSize = New System.Drawing.Size(490, 742)
+		Me.Controls.Add(Me.TableLayoutPanel1)
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "Form1"
 		Me.Text = "USFMtoSwordModule"
 		Me.GroupBox1.ResumeLayout(False)
 		Me.GroupBox1.PerformLayout()
+		Me.TableLayoutPanel1.ResumeLayout(False)
+		Me.TableLayoutPanel1.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -577,5 +612,6 @@ Partial Class Form1
 	Friend WithEvents Label18 As System.Windows.Forms.Label
 	Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
 	Friend WithEvents Label19 As System.Windows.Forms.Label
+	Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
 
 End Class
