@@ -297,6 +297,14 @@ Public Class Form1
 			For x = 0 To numberoffiles - 1
 				sourcefilename = ListBox1.Items(x)
 				destinationfilename = Strings.Left(sourcefilename, Len(sourcefilename) - 3) & "xml"
+				If Not System.IO.File.Exists(destinationfilename) Then
+					Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & divider & Chr(10) & "ERROR! The file " & destinationfilename & " was not found." & Chr(10) & "This indicates that the perl script failed to convert the usfm file " & sourcefilename & " into osis format."
+					Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+					Dialog1.TextBox1.ScrollToCaret()
+					Dialog1.TextBox1.Focus()
+					My.Application.DoEvents()
+					GoTo trynextfile
+				End If
 				Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & divider & Chr(10) & "Adding " & destinationfilename
 				Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
 				Dialog1.TextBox1.ScrollToCaret()
@@ -339,7 +347,7 @@ Public Class Form1
 					Dialog1.TextBox1.ScrollToCaret()
 					Dialog1.TextBox1.Focus()
 				End If
-
+trynextfile:
 				Dialog1.ProgressBar1.Value = Dialog1.ProgressBar1.Value + 1
 				Dialog1.ProgressBar1.Update()
 
