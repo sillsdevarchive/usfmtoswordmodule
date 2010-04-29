@@ -56,9 +56,12 @@ Public Class Form1
 		If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
 			Dim file As String
 			For Each file In OpenFileDialog1.FileNames
-				ListBox1.Items.Add(file)
-				Button3.Enabled = True
-				workingdirectory = System.IO.Path.GetDirectoryName(file)
+				If Not (ListBox1.Items.Contains(file)) Then
+					ListBox1.Items.Add(file)
+					Button3.Enabled = True
+					workingdirectory = System.IO.Path.GetDirectoryName(file)
+					ToolStripMenuItem1.Enabled = True
+				End If
 			Next
 		End If
 	End Sub
@@ -66,13 +69,18 @@ Public Class Form1
 	Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
 		ListBox1.Items.Clear()
 		Button3.Enabled = False
+		ToolStripMenuItem1.Enabled = False
 	End Sub
 
 	Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
 		Dim temp As Integer
-		Dim x As Integer
+		Dim x, numberoffiles As Integer
 		Dim divider, perlbin As String
 		Dim commandlineargs, sourcefilename, destinationfilename, encoding As String
+		Dim ignoremarkers As Boolean
+		Dim ListItems() As String
+
+		ListItems = Nothing
 
 		' Error checking
 		' Check for Perl
@@ -152,6 +160,139 @@ Public Class Form1
 			divider = "================================================================"
 			Dialog1.Show()
 
+			' Count number of files to process and prepare progressbar
+			numberoffiles = ListBox1.Items.Count
+			Dialog1.ProgressBar1.Maximum = numberoffiles * 2
+			Dialog1.ProgressBar1.Value = 0
+
+			' Check for markers to ignore
+			If ((Form3.ListBox1.Items.Count > 0) Or (Form3.ListBox2.Items.Count > 0) Or (Form3.ListBox3.Items.Count > 0)) Then
+				ignoremarkers = True
+				Dialog1.ProgressBar1.Maximum = numberoffiles * 3
+				Dialog1.TextBox1.Text = Dialog1.TextBox1.Text + divider & Chr(10) & divider & Chr(10) & "IGNORING MARKERS..."
+				Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+				Dialog1.TextBox1.ScrollToCaret()
+				Dialog1.TextBox1.Focus()
+				My.Application.DoEvents()
+
+				' Save all ListBox1 entries to temporary array
+				ListItems = New String(numberoffiles) {}
+				ListBox1.Items.CopyTo(ListItems, 0)
+
+				' Process files
+				For x = 0 To numberoffiles - 1
+					' Open file
+					sourcefilename = ListBox1.Items(x)
+					Dim objReader As StreamReader
+					Dim tempstring As String
+
+					objReader = New StreamReader(sourcefilename)
+					tempstring = objReader.ReadToEnd()
+					objReader.Close()
+
+					' Strip markers
+					Dim prevpos, startpos, textpos, textlen, xloop As Double
+					Dim marker, newstring As String
+
+					' This is where the markers are stripped
+					prevpos = 1
+					startpos = 1
+					textpos = 1
+					textlen = Len(tempstring)
+					newstring = ""
+
+					While (textpos < textlen)
+						' Search for next marker
+						While (Mid(tempstring, textpos, 1) <> "\")
+							textpos = textpos + 1
+							If textpos > textlen Then GoTo finished
+						End While
+
+						' Get what marker has been found
+						startpos = textpos
+						While ((Mid(tempstring, textpos, 1) <> " ") And (Mid(tempstring, textpos, 1) <> Chr(10)))
+							textpos = textpos + 1
+							If textpos > textlen Then GoTo finished
+						End While
+						marker = Mid(tempstring, startpos, textpos - startpos)
+
+						' Dealing with markers with a line of characters following
+						For xloop = 1 To Form3.ListBox1.Items.Count
+							If (marker = Form3.ListBox1.Items(xloop - 1)) Then
+								' Need to scan to end of line by scanning for next marker
+								textpos = textpos + 1
+								While (Mid(tempstring, textpos, 1) <> Chr(10))
+									textpos = textpos + 1
+								End While
+								textpos = textpos + 1
+								GoTo stripmarker
+							End If
+						Next
+
+						' Dealing with markers that have no characters following
+						For xloop = 1 To Form3.ListBox2.Items.Count
+							If (marker = Form3.ListBox2.Items(xloop - 1)) Then
+								textpos = textpos + 1
+								GoTo stripmarker
+							End If
+						Next
+
+						' Dealing with markers that have an end of marker
+						For xloop = 1 To Form3.ListBox3.Items.Count
+							If (marker = Form3.ListBox3.Items(xloop - 1)) Then
+								' Need to scan to find \[MKR]*
+								textpos = textpos + 1
+								While (Mid(tempstring, textpos, Len(marker) + 1) <> marker + "*")
+									textpos = textpos + 1
+								End While
+								textpos = textpos + Len(marker) + 1
+								GoTo stripmarker
+							End If
+						Next
+
+						GoTo nextmarker
+
+						' Copy the text from the previous position to the start of the unwanted marker, then continue scanning after the end of the marker's content
+stripmarker:
+						newstring = newstring + Mid(tempstring, prevpos, startpos - prevpos)
+						prevpos = textpos
+						If marker = "\f" Then
+							newstring = newstring + " "
+						End If
+
+nextmarker:
+					End While
+
+finished:
+					newstring = newstring + Mid(tempstring, prevpos, textlen - prevpos)
+
+reallyfinished:
+					' Save using new filename
+					destinationfilename = Strings.Left(sourcefilename, Len(sourcefilename) - 3) & "tmp"
+
+					Dim objWriter As StreamWriter
+
+					objWriter = New StreamWriter(destinationfilename)
+					objWriter.Write(newstring)
+					objReader.Close()
+
+					' Replace entry in ListBox1
+					ListBox1.Items.Remove(sourcefilename)
+					ListBox1.Items.Add(destinationfilename)
+
+					Dialog1.ProgressBar1.Value = Dialog1.ProgressBar1.Value + 1
+					Dialog1.ProgressBar1.Update()
+
+					My.Application.DoEvents()
+				Next x
+
+				Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & " DONE!" & Chr(10)
+				Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+				Dialog1.TextBox1.ScrollToCaret()
+				Dialog1.TextBox1.Focus()
+				My.Application.DoEvents()
+			End If
+
 			' Create working folder
 			ChDir(workingdirectory)
 			If System.IO.Directory.Exists(workingdirectory & "\temp") Then
@@ -182,7 +323,7 @@ Public Class Form1
 
 			' Generate .conf file in mods.d folder
 			Dialog1.Label1.Text = "Generating .conf file..."
-			Dialog1.TextBox1.Text = divider & Chr(10) & divider & Chr(10) & "GENERATING .CONF FILE..."
+			Dialog1.TextBox1.Text = Dialog1.TextBox1.Text + divider & Chr(10) & divider & Chr(10) & "GENERATING .CONF FILE..."
 			Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
 			Dialog1.TextBox1.ScrollToCaret()
 			Dialog1.TextBox1.Focus()
@@ -226,12 +367,6 @@ Public Class Form1
 			Dialog1.TextBox1.ScrollToCaret()
 			Dialog1.TextBox1.Focus()
 			My.Application.DoEvents()
-
-			' Count number of files to process and prepare progressbar
-			Dim numberoffiles As Integer
-			numberoffiles = ListBox1.Items.Count
-			Dialog1.ProgressBar1.Maximum = numberoffiles * 2
-			Dialog1.ProgressBar1.Value = 0
 
 			' Call usfm2osis.pl script
 			Dialog1.Label1.Text = "Converting from USFM to OSIS..."
@@ -390,6 +525,13 @@ trynextfile:
 			My.Application.DoEvents()
 		End If
 exitproc:
+		' If markers were ignored, restore ListBox1 items from temporary array
+		If ignoremarkers Then
+			ListBox1.Items.Clear()
+			For x = 0 To numberoffiles - 1
+				ListBox1.Items.Add(ListItems(x))
+			Next x
+		End If
 	End Sub
 
 	Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
@@ -458,6 +600,8 @@ exitproc:
 
 	Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 		applicationdirectory = CurDir()
+		Form3.Show()
+		Form3.Hide()
 	End Sub
 
 	Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
@@ -497,4 +641,25 @@ exitproc:
 			TextBox8.Enabled = False
 		End If
 	End Sub
+
+	Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button10.Click
+		Form3.Show()
+	End Sub
+
+	Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
+		ListBox1.Items.Remove(ListBox1.SelectedItem)
+		If ListBox1.Items.Count = 0 Then
+			ToolStripMenuItem1.Enabled = False
+		End If
+	End Sub
+
+	Private Sub ListBox1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseDown
+		If e.Button = MouseButtons.Right Then
+			Dim pt As Point
+			pt.X = e.X
+			pt.Y = e.Y
+			ListBox1.SelectedIndex = ListBox1.IndexFromPoint(pt)
+		End If
+	End Sub
+
 End Class

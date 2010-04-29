@@ -22,9 +22,12 @@ Partial Class Form1
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()> _
 	Private Sub InitializeComponent()
+		Me.components = New System.ComponentModel.Container
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
 		Me.Button1 = New System.Windows.Forms.Button
 		Me.ListBox1 = New System.Windows.Forms.ListBox
+		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox
 		Me.ComboBox3 = New System.Windows.Forms.ComboBox
 		Me.Label19 = New System.Windows.Forms.Label
@@ -71,6 +74,8 @@ Partial Class Form1
 		Me.Button8 = New System.Windows.Forms.Button
 		Me.FontDialog1 = New System.Windows.Forms.FontDialog
 		Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
+		Me.Button10 = New System.Windows.Forms.Button
+		Me.ContextMenuStrip1.SuspendLayout()
 		Me.GroupBox1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.SuspendLayout()
@@ -88,6 +93,7 @@ Partial Class Form1
 		'ListBox1
 		'
 		Me.TableLayoutPanel1.SetColumnSpan(Me.ListBox1, 3)
+		Me.ListBox1.ContextMenuStrip = Me.ContextMenuStrip1
 		Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.ListBox1.FormattingEnabled = True
 		Me.ListBox1.HorizontalScrollbar = True
@@ -97,6 +103,20 @@ Partial Class Form1
 		Me.ListBox1.Sorted = True
 		Me.ListBox1.TabIndex = 1
 		Me.ListBox1.TabStop = False
+		'
+		'ContextMenuStrip1
+		'
+		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+		'
+		'ToolStripMenuItem1
+		'
+		Me.ToolStripMenuItem1.Enabled = False
+		Me.ToolStripMenuItem1.Image = Global.USFMtoSwordModule.My.Resources.Resources.cross
+		Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+		Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+		Me.ToolStripMenuItem1.Text = "Delete file"
 		'
 		'GroupBox1
 		'
@@ -536,6 +556,7 @@ Partial Class Form1
 		Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 3)
 		Me.TableLayoutPanel1.Controls.Add(Me.Button3, 1, 0)
 		Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 2)
+		Me.TableLayoutPanel1.Controls.Add(Me.Button10, 2, 2)
 		Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
 		Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -548,6 +569,16 @@ Partial Class Form1
 		Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 742)
 		Me.TableLayoutPanel1.TabIndex = 14
 		'
+		'Button10
+		'
+		Me.Button10.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.Button10.Location = New System.Drawing.Point(329, 248)
+		Me.Button10.Name = "Button10"
+		Me.Button10.Size = New System.Drawing.Size(158, 21)
+		Me.Button10.TabIndex = 14
+		Me.Button10.Text = "Ignore markers..."
+		Me.Button10.UseVisualStyleBackColor = True
+		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -557,6 +588,7 @@ Partial Class Form1
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "Form1"
 		Me.Text = "USFMtoSwordModule"
+		Me.ContextMenuStrip1.ResumeLayout(False)
 		Me.GroupBox1.ResumeLayout(False)
 		Me.GroupBox1.PerformLayout()
 		Me.TableLayoutPanel1.ResumeLayout(False)
@@ -613,5 +645,8 @@ Partial Class Form1
 	Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
 	Friend WithEvents Label19 As System.Windows.Forms.Label
 	Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+	Friend WithEvents Button10 As System.Windows.Forms.Button
+	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+	Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 
 End Class
