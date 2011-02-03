@@ -1,0 +1,78 @@
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Dialog1.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form1.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Resources.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.vbproj.GenerateResource.Cache
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Dialog1.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form1.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Resources.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.vbproj.GenerateResource.Cache
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.InputDialog.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form3.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.InputDialog.resources
+C:\Documents and Settings\benc\Desktop\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form3.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Dialog1.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form1.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.InputDialog.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form3.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Resources.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.vbproj.GenerateResource.Cache
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.exe
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.pdb
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.xml
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Dialog1.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form1.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.InputDialog.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form3.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Resources.resources
+C:\Documents and Settings\benc\My Documents\Visual Studio 2005\Projects\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.vbproj.GenerateResource.Cache
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.exe
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.xml
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.pdb
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.exe
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.pdb
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Debug\USFMtoSwordModule.xml
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\ResolveAssemblyReference.cache
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Dialog1.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form1.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.InputDialog.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Form3.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.Resources.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.vbproj.GenerateResource.Cache
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.exe
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.xml
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Debug\USFMtoSwordModule.pdb
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.exe
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.pdb
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\bin\Release\USFMtoSwordModule.xml
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\ResolveAssemblyReference.cache
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Dialog1.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form1.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.InputDialog.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Form3.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.Resources.resources
+B:\Source Code\Visual Basic 2005 Express\USFMtoSwordModule\USFMtoSwordModule\obj\Release\USFMtoSwordModule.vbproj.GenerateResource.Cache

@@ -63,6 +63,7 @@ Public Class Form1
 					ToolStripMenuItem1.Enabled = True
 				End If
 			Next
+			Label1.Text = "Files:" + Str(ListBox1.Items.Count) + "                   Encoding:"
 		End If
 	End Sub
 
@@ -70,15 +71,17 @@ Public Class Form1
 		ListBox1.Items.Clear()
 		Button3.Enabled = False
 		ToolStripMenuItem1.Enabled = False
+		Label1.Text = "Encoding:"
 	End Sub
 
 	Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
 		Dim temp As Integer
 		Dim x, numberoffiles As Integer
 		Dim divider, perlbin As String
-		Dim commandlineargs, sourcefilename, destinationfilename, encoding As String
+		Dim commandlineargs, sourcefilename, destinationfilename, encoding, controlfile, logfile As String
 		Dim ignoremarkers As Boolean
 		Dim ListItems() As String
+		Dim bitremoved As String
 
 		ListItems = Nothing
 
@@ -162,13 +165,25 @@ Public Class Form1
 
 			' Count number of files to process and prepare progressbar
 			numberoffiles = ListBox1.Items.Count
-			Dialog1.ProgressBar1.Maximum = numberoffiles * 2
+			If CheckBox2.Checked = True Then
+				' User requested that cross references be added
+				Dialog1.ProgressBar1.Maximum = numberoffiles * 3
+			Else
+				Dialog1.ProgressBar1.Maximum = numberoffiles * 2
+			End If
 			Dialog1.ProgressBar1.Value = 0
 
 			' Check for markers to ignore
 			If ((Form3.ListBox1.Items.Count > 0) Or (Form3.ListBox2.Items.Count > 0) Or (Form3.ListBox3.Items.Count > 0)) Then
 				ignoremarkers = True
-				Dialog1.ProgressBar1.Maximum = numberoffiles * 3
+
+				If CheckBox2.Checked = True Then
+					' User requested that cross references be added
+					Dialog1.ProgressBar1.Maximum = numberoffiles * 4
+				Else
+					Dialog1.ProgressBar1.Maximum = numberoffiles * 3
+				End If
+
 				Dialog1.TextBox1.Text = Dialog1.TextBox1.Text + divider & Chr(10) & divider & Chr(10) & "IGNORING MARKERS..."
 				Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
 				Dialog1.TextBox1.ScrollToCaret()
@@ -212,8 +227,14 @@ Public Class Form1
 						startpos = textpos
 						While ((Mid(tempstring, textpos, 1) <> " ") And (Mid(tempstring, textpos, 1) <> Chr(10)))
 							textpos = textpos + 1
+							If (Mid(tempstring, textpos, 1) = "*") Then
+								' End of marker found (but it might not be followed by space)
+								textpos = textpos + 1
+								GoTo foundmarker
+							End If
 							If textpos > textlen Then GoTo finished
 						End While
+foundmarker:
 						marker = Mid(tempstring, startpos, textpos - startpos)
 
 						' Dealing with markers with a line of characters following
@@ -255,6 +276,7 @@ Public Class Form1
 						' Copy the text from the previous position to the start of the unwanted marker, then continue scanning after the end of the marker's content
 stripmarker:
 						newstring = newstring + Mid(tempstring, prevpos, startpos - prevpos)
+						bitremoved = Mid(tempstring, startpos, textpos - startpos)
 						prevpos = textpos
 						If marker = "\f" Then
 							newstring = newstring + " "
@@ -274,7 +296,7 @@ reallyfinished:
 
 					objWriter = New StreamWriter(destinationfilename)
 					objWriter.Write(newstring)
-					objReader.Close()
+					objWriter.Close()
 
 					' Replace entry in ListBox1
 					ListBox1.Items.Remove(sourcefilename)
@@ -416,6 +438,151 @@ reallyfinished:
 
 			Next x
 
+			' Add crossreferences if requested
+			If CheckBox2.Checked = True Then
+				Dialog1.Label1.Text = "Adding Cross References to OSIS files..."
+				Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & divider & Chr(10) & "ADDING CROSS REFERENCES TO OSIS FILES..." & Chr(10) & divider
+				Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+				Dialog1.TextBox1.ScrollToCaret()
+				Dialog1.TextBox1.Focus()
+				My.Application.DoEvents()
+				ChDir(applicationdirectory) ' Need to do this to get access to CrossReferences files
+
+				For x = 0 To numberoffiles - 1
+					'perl.exe addCrossRefs.pl CF/CF_addCrossRefs_NLT96_GEN.txt NLT96/genxml/01GENNLT96.xml NLT96/genxml/01GENNLT96_CR.xml NLT96_addCrossRefs.log
+					sourcefilename = Strings.Left(ListBox1.Items(x), Len(ListBox1.Items(x)) - 3) & "xml"
+					destinationfilename = Strings.Left(sourcefilename, Len(sourcefilename) - 4) & "_CR.xml"
+					logfile = workingdirectory + "\logfile_CR.txt"
+					If System.IO.File.Exists(logfile) Then
+						System.IO.File.Delete(logfile)
+					End If
+					If ComboBox2.SelectedIndex = 1 Then
+						controlfile = applicationdirectory & "\CF_West\"
+					Else
+						controlfile = applicationdirectory & "\CF_East\"
+					End If
+
+					If sourcefilename.Contains("COL") Then
+						' This is necessary to avoid conflict with 2CO
+						controlfile = controlfile + "CF_addCrossRefs_COL.txt"
+						GoTo continueprocessing
+					End If
+					If sourcefilename.Contains("1CH") Then controlfile = controlfile + "CF_addCrossRefs_1CH.txt"
+					If sourcefilename.Contains("1CO") Then controlfile = controlfile + "CF_addCrossRefs_1CO.txt"
+					If sourcefilename.Contains("1JN") Then controlfile = controlfile + "CF_addCrossRefs_1JN.txt"
+					If sourcefilename.Contains("1KI") Then controlfile = controlfile + "CF_addCrossRefs_1KI.txt"
+					If sourcefilename.Contains("1PE") Then controlfile = controlfile + "CF_addCrossRefs_1PE.txt"
+					If sourcefilename.Contains("1SA") Then controlfile = controlfile + "CF_addCrossRefs_1SA.txt"
+					If sourcefilename.Contains("1TH") Then controlfile = controlfile + "CF_addCrossRefs_1TH.txt"
+					If sourcefilename.Contains("1TI") Then controlfile = controlfile + "CF_addCrossRefs_1TI.txt"
+					If sourcefilename.Contains("2CH") Then controlfile = controlfile + "CF_addCrossRefs_2CH.txt"
+					If sourcefilename.Contains("2CO") Then controlfile = controlfile + "CF_addCrossRefs_2CO.txt"
+					If sourcefilename.Contains("2JN") Then controlfile = controlfile + "CF_addCrossRefs_2JN.txt"
+					If sourcefilename.Contains("2KI") Then controlfile = controlfile + "CF_addCrossRefs_2KI.txt"
+					If sourcefilename.Contains("2PE") Then controlfile = controlfile + "CF_addCrossRefs_2PE.txt"
+					If sourcefilename.Contains("2SA") Then controlfile = controlfile + "CF_addCrossRefs_2SA.txt"
+					If sourcefilename.Contains("2TH") Then controlfile = controlfile + "CF_addCrossRefs_2TH.txt"
+					If sourcefilename.Contains("2TI") Then controlfile = controlfile + "CF_addCrossRefs_2TI.txt"
+					If sourcefilename.Contains("3JN") Then controlfile = controlfile + "CF_addCrossRefs_3JN.txt"
+					If sourcefilename.Contains("ACT") Then controlfile = controlfile + "CF_addCrossRefs_ACT.txt"
+					If sourcefilename.Contains("AMO") Then controlfile = controlfile + "CF_addCrossRefs_AMO.txt"
+					If sourcefilename.Contains("DAN") Then controlfile = controlfile + "CF_addCrossRefs_DAN.txt"
+					If sourcefilename.Contains("DEU") Then controlfile = controlfile + "CF_addCrossRefs_DEU.txt"
+					If sourcefilename.Contains("ECC") Then controlfile = controlfile + "CF_addCrossRefs_ECC.txt"
+					If sourcefilename.Contains("EPH") Then controlfile = controlfile + "CF_addCrossRefs_EPH.txt"
+					If sourcefilename.Contains("EST") Then controlfile = controlfile + "CF_addCrossRefs_EST.txt"
+					If sourcefilename.Contains("EXO") Then controlfile = controlfile + "CF_addCrossRefs_EXO.txt"
+					If sourcefilename.Contains("EZK") Then controlfile = controlfile + "CF_addCrossRefs_EZK.txt"
+					If sourcefilename.Contains("EZR") Then controlfile = controlfile + "CF_addCrossRefs_EZR.txt"
+					If sourcefilename.Contains("GAL") Then controlfile = controlfile + "CF_addCrossRefs_GAL.txt"
+					If sourcefilename.Contains("GEN") Then controlfile = controlfile + "CF_addCrossRefs_GEN.txt"
+					If sourcefilename.Contains("HAB") Then controlfile = controlfile + "CF_addCrossRefs_HAB.txt"
+					If sourcefilename.Contains("HAG") Then controlfile = controlfile + "CF_addCrossRefs_HAG.txt"
+					If sourcefilename.Contains("HEB") Then controlfile = controlfile + "CF_addCrossRefs_HEB.txt"
+					If sourcefilename.Contains("HOS") Then controlfile = controlfile + "CF_addCrossRefs_HOS.txt"
+					If sourcefilename.Contains("ISA") Then controlfile = controlfile + "CF_addCrossRefs_ISA.txt"
+					If sourcefilename.Contains("JAS") Then controlfile = controlfile + "CF_addCrossRefs_JAS.txt"
+					If sourcefilename.Contains("JDG") Then controlfile = controlfile + "CF_addCrossRefs_JDG.txt"
+					If sourcefilename.Contains("JER") Then controlfile = controlfile + "CF_addCrossRefs_JER.txt"
+					If sourcefilename.Contains("JHN") Then controlfile = controlfile + "CF_addCrossRefs_JHN.txt"
+					If sourcefilename.Contains("JOB") Then controlfile = controlfile + "CF_addCrossRefs_JOB.txt"
+					If sourcefilename.Contains("JOL") Then controlfile = controlfile + "CF_addCrossRefs_JOL.txt"
+					If sourcefilename.Contains("JON") Then controlfile = controlfile + "CF_addCrossRefs_JON.txt"
+					If sourcefilename.Contains("JOS") Then controlfile = controlfile + "CF_addCrossRefs_JOS.txt"
+					If sourcefilename.Contains("JUD") Then controlfile = controlfile + "CF_addCrossRefs_JUD.txt"
+					If sourcefilename.Contains("LAM") Then controlfile = controlfile + "CF_addCrossRefs_LAM.txt"
+					If sourcefilename.Contains("LEV") Then controlfile = controlfile + "CF_addCrossRefs_LEV.txt"
+					If sourcefilename.Contains("LUK") Then controlfile = controlfile + "CF_addCrossRefs_LUK.txt"
+					If sourcefilename.Contains("MAL") Then controlfile = controlfile + "CF_addCrossRefs_MAL.txt"
+					If sourcefilename.Contains("MAT") Then controlfile = controlfile + "CF_addCrossRefs_MAT.txt"
+					If sourcefilename.Contains("MIC") Then controlfile = controlfile + "CF_addCrossRefs_MIC.txt"
+					If sourcefilename.Contains("MRK") Then controlfile = controlfile + "CF_addCrossRefs_MRK.txt"
+					If sourcefilename.Contains("NAM") Then controlfile = controlfile + "CF_addCrossRefs_NAM.txt"
+					If sourcefilename.Contains("NEH") Then controlfile = controlfile + "CF_addCrossRefs_NEH.txt"
+					If sourcefilename.Contains("NUM") Then controlfile = controlfile + "CF_addCrossRefs_NUM.txt"
+					If sourcefilename.Contains("OBA") Then controlfile = controlfile + "CF_addCrossRefs_OBA.txt"
+					If sourcefilename.Contains("PHM") Then controlfile = controlfile + "CF_addCrossRefs_PHM.txt"
+					If sourcefilename.Contains("PHP") Then controlfile = controlfile + "CF_addCrossRefs_PHP.txt"
+					If sourcefilename.Contains("PRO") Then controlfile = controlfile + "CF_addCrossRefs_PRO.txt"
+					If sourcefilename.Contains("PSA") Then controlfile = controlfile + "CF_addCrossRefs_PSA.txt"
+					If sourcefilename.Contains("REV") Then controlfile = controlfile + "CF_addCrossRefs_REV.txt"
+					If sourcefilename.Contains("ROM") Then controlfile = controlfile + "CF_addCrossRefs_ROM.txt"
+					If sourcefilename.Contains("RUT") Then controlfile = controlfile + "CF_addCrossRefs_RUT.txt"
+					If sourcefilename.Contains("SNG") Then controlfile = controlfile + "CF_addCrossRefs_SNG.txt"
+					If sourcefilename.Contains("TIT") Then controlfile = controlfile + "CF_addCrossRefs_TIT.txt"
+					If sourcefilename.Contains("ZEC") Then controlfile = controlfile + "CF_addCrossRefs_ZEC.txt"
+					If sourcefilename.Contains("ZEP") Then controlfile = controlfile + "CF_addCrossRefs_ZEP.txt"
+continueprocessing:
+					commandlineargs = Chr(34) & applicationdirectory & "\addCrossRefs.pl" & Chr(34) & " " & Chr(34) & controlfile & Chr(34) & " " & Chr(34) & sourcefilename & Chr(34) & " " & Chr(34) & destinationfilename & Chr(34) & " " & Chr(34) & logfile & Chr(34)
+
+					Dim psi As New _
+					System.Diagnostics.ProcessStartInfo(perlbin)
+					psi.RedirectStandardOutput = True
+					psi.CreateNoWindow = True
+					psi.UseShellExecute = False
+					psi.Arguments = commandlineargs
+					Dim listFiles As System.Diagnostics.Process
+					listFiles = System.Diagnostics.Process.Start(psi)
+					listFiles.WaitForExit(60000)
+					If listFiles.HasExited Then
+						Dim oRead As System.IO.StreamReader
+						oRead = File.OpenText(logfile)
+						Dim output As String = oRead.ReadToEnd()
+						oRead.Close()
+						oRead.Dispose()
+						Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & divider & Chr(10) & output
+						Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+						Dialog1.TextBox1.ScrollToCaret()
+						Dialog1.TextBox1.Focus()
+					Else
+						listFiles.Kill()
+						Dim oRead As System.IO.StreamReader
+						oRead = File.OpenText(logfile)
+						Dim output As String = oRead.ReadToEnd()
+						oRead.Close()
+						oRead.Dispose()
+						Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & divider & Chr(10) & "PROBLEM ADDING CROSSREFERENCES " & sourcefilename
+						Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & "OUTPUT LOGFILE:"
+						Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(10) & output
+						Dialog1.TextBox1.SelectionStart = Dialog1.TextBox1.TextLength
+						Dialog1.TextBox1.ScrollToCaret()
+						Dialog1.TextBox1.Focus()
+					End If
+
+					' Copy temp file to actual file and delete temp file
+					System.IO.File.Copy(destinationfilename, sourcefilename, True)
+					System.IO.File.Delete(destinationfilename)
+					If System.IO.File.Exists(logfile) Then
+						System.IO.File.Delete(logfile)
+					End If
+					Dialog1.ProgressBar1.Value = Dialog1.ProgressBar1.Value + 1
+					Dialog1.ProgressBar1.Update()
+
+					My.Application.DoEvents()
+
+				Next x
+			End If
+
 			' Call osis2mod.exe
 			If CheckBox1.Checked = False Then
 				Dialog1.Label1.Text = "Building Sword module..."
@@ -544,9 +711,11 @@ exitproc:
 		TextBox7.Text = ""
 		TextBox8.Text = ""
 		CheckBox1.Checked = False
+		CheckBox2.Checked = False
 		ComboBox1.SelectedIndex = -1
 		ComboBox2.SelectedIndex = -1
 		ComboBox3.SelectedIndex = -1
+		ComboBox4.SelectedIndex = -1
 	End Sub
 
 	Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
@@ -569,6 +738,7 @@ exitproc:
 			WriteIni(strFilepath, "Settings", "License", ComboBox2.Text)
 			WriteIni(strFilepath, "Settings", "Copyright", TextBox5.Text)
 			WriteIni(strFilepath, "Settings", "Encrypt", TextBox8.Text)
+			WriteIni(strFilepath, "Settings", "CrossReferences", ComboBox4.Text)
 		End If
 	End Sub
 
@@ -592,8 +762,12 @@ exitproc:
 			ComboBox2.Text = ReadIni(strFilepath, "Settings", "License", "")
 			TextBox5.Text = ReadIni(strFilepath, "Settings", "Copyright", "")
 			TextBox8.Text = ReadIni(strFilepath, "Settings", "Encrypt", "")
+			ComboBox4.Text = ReadIni(strFilepath, "Settings", "CrossReferences", "")
 			If TextBox8.Text <> "" Then
 				CheckBox1.Checked = True
+			End If
+			If ComboBox4.Text <> "" Then
+				CheckBox2.Checked = True
 			End If
 		End If
 	End Sub
@@ -662,4 +836,11 @@ exitproc:
 		End If
 	End Sub
 
+	Private Sub CheckBox2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox2.CheckedChanged
+		If CheckBox2.Checked = True Then
+			ComboBox4.Enabled = True
+		Else
+			ComboBox4.Enabled = False
+		End If
+	End Sub
 End Class

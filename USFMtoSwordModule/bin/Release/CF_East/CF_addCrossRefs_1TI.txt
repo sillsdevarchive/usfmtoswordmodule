@@ -1,0 +1,4 @@
+CROSS_REFS_LIST:eastCrossRefs.txt
+REMOVE_REFS_TO_MISSING_BOOKS:false
+:
+1TI

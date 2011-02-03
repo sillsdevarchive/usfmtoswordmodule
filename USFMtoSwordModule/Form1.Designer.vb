@@ -29,6 +29,8 @@ Partial Class Form1
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox
+		Me.ComboBox4 = New System.Windows.Forms.ComboBox
+		Me.CheckBox2 = New System.Windows.Forms.CheckBox
 		Me.ComboBox3 = New System.Windows.Forms.ComboBox
 		Me.Label19 = New System.Windows.Forms.Label
 		Me.Label18 = New System.Windows.Forms.Label
@@ -99,7 +101,7 @@ Partial Class Form1
 		Me.ListBox1.HorizontalScrollbar = True
 		Me.ListBox1.Location = New System.Drawing.Point(3, 41)
 		Me.ListBox1.Name = "ListBox1"
-		Me.ListBox1.Size = New System.Drawing.Size(484, 199)
+		Me.ListBox1.Size = New System.Drawing.Size(484, 160)
 		Me.ListBox1.Sorted = True
 		Me.ListBox1.TabIndex = 1
 		Me.ListBox1.TabStop = False
@@ -108,19 +110,21 @@ Partial Class Form1
 		'
 		Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
 		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-		Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(132, 26)
 		'
 		'ToolStripMenuItem1
 		'
 		Me.ToolStripMenuItem1.Enabled = False
 		Me.ToolStripMenuItem1.Image = Global.USFMtoSwordModule.My.Resources.Resources.cross
 		Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-		Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+		Me.ToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
 		Me.ToolStripMenuItem1.Text = "Delete file"
 		'
 		'GroupBox1
 		'
 		Me.TableLayoutPanel1.SetColumnSpan(Me.GroupBox1, 3)
+		Me.GroupBox1.Controls.Add(Me.ComboBox4)
+		Me.GroupBox1.Controls.Add(Me.CheckBox2)
 		Me.GroupBox1.Controls.Add(Me.ComboBox3)
 		Me.GroupBox1.Controls.Add(Me.Label19)
 		Me.GroupBox1.Controls.Add(Me.Label18)
@@ -154,12 +158,32 @@ Partial Class Form1
 		Me.GroupBox1.Controls.Add(Me.Label3)
 		Me.GroupBox1.Controls.Add(Me.TextBox1)
 		Me.GroupBox1.Controls.Add(Me.Label2)
-		Me.GroupBox1.Location = New System.Drawing.Point(3, 275)
+		Me.GroupBox1.Location = New System.Drawing.Point(3, 234)
 		Me.GroupBox1.Name = "GroupBox1"
-		Me.GroupBox1.Size = New System.Drawing.Size(484, 426)
+		Me.GroupBox1.Size = New System.Drawing.Size(484, 453)
 		Me.GroupBox1.TabIndex = 2
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Sword Module properties"
+		'
+		'ComboBox4
+		'
+		Me.ComboBox4.Enabled = False
+		Me.ComboBox4.FormattingEnabled = True
+		Me.ComboBox4.Items.AddRange(New Object() {"West", "East"})
+		Me.ComboBox4.Location = New System.Drawing.Point(160, 390)
+		Me.ComboBox4.Name = "ComboBox4"
+		Me.ComboBox4.Size = New System.Drawing.Size(97, 21)
+		Me.ComboBox4.TabIndex = 36
+		'
+		'CheckBox2
+		'
+		Me.CheckBox2.AutoSize = True
+		Me.CheckBox2.Location = New System.Drawing.Point(19, 392)
+		Me.CheckBox2.Name = "CheckBox2"
+		Me.CheckBox2.Size = New System.Drawing.Size(138, 17)
+		Me.CheckBox2.TabIndex = 35
+		Me.CheckBox2.Text = "Add Cross References?"
+		Me.CheckBox2.UseVisualStyleBackColor = True
 		'
 		'ComboBox3
 		'
@@ -228,7 +252,7 @@ Partial Class Form1
 		'
 		'Button6
 		'
-		Me.Button6.Location = New System.Drawing.Point(256, 388)
+		Me.Button6.Location = New System.Drawing.Point(404, 423)
 		Me.Button6.Name = "Button6"
 		Me.Button6.Size = New System.Drawing.Size(68, 24)
 		Me.Button6.TabIndex = 28
@@ -238,7 +262,7 @@ Partial Class Form1
 		'
 		'Button5
 		'
-		Me.Button5.Location = New System.Drawing.Point(404, 388)
+		Me.Button5.Location = New System.Drawing.Point(256, 423)
 		Me.Button5.Name = "Button5"
 		Me.Button5.Size = New System.Drawing.Size(68, 24)
 		Me.Button5.TabIndex = 27
@@ -248,7 +272,7 @@ Partial Class Form1
 		'
 		'Button4
 		'
-		Me.Button4.Location = New System.Drawing.Point(330, 388)
+		Me.Button4.Location = New System.Drawing.Point(330, 423)
 		Me.Button4.Name = "Button4"
 		Me.Button4.Size = New System.Drawing.Size(68, 24)
 		Me.Button4.TabIndex = 26
@@ -459,7 +483,7 @@ Partial Class Form1
 		'
 		Me.Label1.AutoSize = True
 		Me.Label1.Dock = System.Windows.Forms.DockStyle.Right
-		Me.Label1.Location = New System.Drawing.Point(105, 245)
+		Me.Label1.Location = New System.Drawing.Point(105, 204)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(55, 27)
 		Me.Label1.TabIndex = 3
@@ -469,7 +493,7 @@ Partial Class Form1
 		'Button2
 		'
 		Me.Button2.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.Button2.Location = New System.Drawing.Point(3, 707)
+		Me.Button2.Location = New System.Drawing.Point(3, 693)
 		Me.Button2.Name = "Button2"
 		Me.Button2.Size = New System.Drawing.Size(157, 32)
 		Me.Button2.TabIndex = 13
@@ -481,7 +505,7 @@ Partial Class Form1
 		Me.ComboBox1.Dock = System.Windows.Forms.DockStyle.Top
 		Me.ComboBox1.FormattingEnabled = True
 		Me.ComboBox1.Items.AddRange(New Object() {"utf-8 (Unicode)", "cp1251 (Cyrillic)", "cp1252 (Western)"})
-		Me.ComboBox1.Location = New System.Drawing.Point(166, 248)
+		Me.ComboBox1.Location = New System.Drawing.Point(166, 207)
 		Me.ComboBox1.Name = "ComboBox1"
 		Me.ComboBox1.Size = New System.Drawing.Size(157, 21)
 		Me.ComboBox1.TabIndex = 1
@@ -521,7 +545,7 @@ Partial Class Form1
 		'
 		Me.Button7.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.Button7.Enabled = False
-		Me.Button7.Location = New System.Drawing.Point(329, 707)
+		Me.Button7.Location = New System.Drawing.Point(329, 693)
 		Me.Button7.Name = "Button7"
 		Me.Button7.Size = New System.Drawing.Size(158, 32)
 		Me.Button7.TabIndex = 8
@@ -566,13 +590,13 @@ Partial Class Form1
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle)
-		Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 742)
+		Me.TableLayoutPanel1.Size = New System.Drawing.Size(490, 728)
 		Me.TableLayoutPanel1.TabIndex = 14
 		'
 		'Button10
 		'
 		Me.Button10.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.Button10.Location = New System.Drawing.Point(329, 248)
+		Me.Button10.Location = New System.Drawing.Point(329, 207)
 		Me.Button10.Name = "Button10"
 		Me.Button10.Size = New System.Drawing.Size(158, 21)
 		Me.Button10.TabIndex = 14
@@ -583,7 +607,7 @@ Partial Class Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(490, 742)
+		Me.ClientSize = New System.Drawing.Size(490, 728)
 		Me.Controls.Add(Me.TableLayoutPanel1)
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "Form1"
@@ -648,5 +672,7 @@ Partial Class Form1
 	Friend WithEvents Button10 As System.Windows.Forms.Button
 	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
 	Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+	Friend WithEvents ComboBox4 As System.Windows.Forms.ComboBox
+	Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
 
 End Class
