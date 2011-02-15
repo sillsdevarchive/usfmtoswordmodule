@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Convert USFM files into a Sword module")>
 <Assembly: AssemblyCompany("NEG")>
 <Assembly: AssemblyProduct("USFMtoSwordModule")>
-<Assembly: AssemblyCopyright("Copyright © NEG CSD 2010")>
+<Assembly: AssemblyCopyright("Copyright © NEG CSD 2010-2011")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
