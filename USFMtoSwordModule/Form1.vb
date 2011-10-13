@@ -635,7 +635,14 @@ continueprocessing:
 				Dim listFiles As System.Diagnostics.Process
 				listFiles = System.Diagnostics.Process.Start(psi)
 				Dim myOutput As System.IO.StreamReader = listFiles.StandardOutput
-				listFiles.WaitForExit(60000)
+				Dim timecount
+				timecount = 0
+				Do Until listFiles.HasExited
+					Application.DoEvents()
+					If timecount > 60000 * 1 Then Exit Do
+					System.Threading.Thread.Sleep(250)
+					timecount = timecount + 250
+				Loop
 				If listFiles.HasExited Then
 					Dim output As String = myOutput.ReadToEnd
 					Dialog1.TextBox1.Text = Dialog1.TextBox1.Text & Chr(13) & Chr(10) & output
@@ -776,6 +783,7 @@ exitproc:
 		applicationdirectory = CurDir()
 		Form3.Show()
 		Form3.Hide()
+		Me.Text = Me.Text + " " + Mid(Application.ProductVersion, 1, Len(Application.ProductVersion) - 4)
 	End Sub
 
 	Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
